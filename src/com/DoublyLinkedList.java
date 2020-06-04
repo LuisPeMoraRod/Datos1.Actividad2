@@ -8,6 +8,9 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 	public Node<T> getFirst() {
 		return this.first;
 	}
+	public int getSize() {
+		return this.size;
+	}
 
 	public void addLast(T value) {
 		if (this.first == null) {
@@ -23,33 +26,60 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 		size++;
 	}
 
-	public int find(T e) {
-		Node<T> temp = this.first;
-		int index = 0;
-		while (temp != null) {
-			if (temp.getValue().compareTo(e) == 0) {
-				return index;
-			}
-			index++;
-			temp = temp.getNext();
-		}
-		return -1;
-	}
-	
-	
+	public T getValue(int index){
+
+        Node<T> current = this.first;
+        int reference = 0;
+
+        while(current != null){
+
+            if(reference == index){
+
+                return current.getValue();
+            }
+
+            else if(index>getSize()-1){
+                System.out.println("Index out of limits");
+                return null;
+            }
+
+            else{
+                reference++;
+                current = current.getNext();
+            }
+
+        }
+        return null;
+
+    }
 	  
-	// Function to print nodes in a given linked list  
-	public void printList( Node<T> start)  
-	{  
-		Node<T> temp = start;  
-	    System.out.println();  
-	    while (temp != null)  
-	    {  
-	        System.out.print( temp.getValue() + " ");  
-	        temp = temp.getNext();  
-	    }  
-	}  
-	  
+	
+	public void modifyValue(T e, int index){
+
+        Node<T> current = this.first;
+        int reference = 0;
+
+        while(current != null){
+
+            if(reference == index){
+
+                current.setValue(e);
+                return;
+            }
+
+            else if(index>getSize()-1){
+                return;
+            }
+
+            else{
+                reference++;
+                current = current.getNext();
+            }
+
+        }
+        return;
+
+    }
 	
 
 	/**

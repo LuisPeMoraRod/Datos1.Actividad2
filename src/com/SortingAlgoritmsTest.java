@@ -17,6 +17,7 @@ public class SortingAlgoritmsTest {
 
 	BubbleSort<Integer> bubbleSort;
 	InsertionSort<Integer> insertionSort;
+	SelectionSort<Integer> selectionSort;
 	DoublyLinkedList<Integer> expected;
 
 	@Before
@@ -45,18 +46,17 @@ public class SortingAlgoritmsTest {
 
 	@Test
 	public void testBubleSort() {
-		Node<Integer> bubbleSortedList;
+		Node<Integer> bubbleSortedList;//pointer to the first element of the bubble sorted list
 		bubbleSort = new BubbleSort<Integer>(list1);
 		bubbleSortedList = bubbleSort.execute(start1);
 		boolean areEqual1 = expected.comparesLists(bubbleSortedList); // Compares the
 		// expected list with the bubble sorted list
 		assertTrue(areEqual1);
-		
 	}
 
 	@Test
 	public void testInsertionSort() {
-		Node<Integer> insertionSortedList;
+		Node<Integer> insertionSortedList;//pointer to the first element of the insertion sorted list
 		insertionSort = new InsertionSort<Integer>(list2);
 		insertionSortedList = insertionSort.execute(start2);
 		boolean areEqual2 = expected.comparesLists(insertionSortedList);// Compares the
@@ -64,6 +64,16 @@ public class SortingAlgoritmsTest {
 		assertTrue(areEqual2);
 	}
 	
+	@Test
+	public void testSelectionSort() {
+		Node<Integer> selectionSortedList; //pointer to the first element of the selection sorted list
+		selectionSort = new SelectionSort<Integer>(list3);
+		selectionSort.execute();
+		selectionSortedList = selectionSort.getSortedList();
+		boolean areEqual3 = expected.comparesLists(selectionSortedList);// Compares the
+		// expected list with the selection sorted list
+		assertTrue(areEqual3);
+	}
 	
 	public DoublyLinkedList<Integer> createList() {
 		DoublyLinkedList<Integer> list = new DoublyLinkedList<Integer>();
@@ -78,5 +88,4 @@ public class SortingAlgoritmsTest {
 		list.addLast(0);//
 		return list;
 	}
-
 }
